@@ -70,7 +70,7 @@ type ReconcileCronHorizontalPodAutoscaler struct {
 // Automatically generate RBAC rules to allow the Controller to read and write Deployments
 // +kubebuilder:rbac:groups=apps,resources=deployments,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups=autoscaling.alibabacloud.com,resources=cronhorizontalpodautoscalers,verbs=get;list;watch;create;update;patch;delete
-func (r *ReconcileCronHorizontalPodAutoscaler) Reconcile(request reconcile.Request) (reconcile.Result, error) {
+func (r *ReconcileCronHorizontalPodAutoscaler) Reconcile(ctx context.Context, request reconcile.Request) (reconcile.Result, error) {
 	// Fetch the CronHorizontalPodAutoscaler instance
 	log.Infof("Start to handle cronHPA %s in %s namespace", request.Name, request.Namespace)
 	instance := &autoscalingv1beta1.CronHorizontalPodAutoscaler{}
