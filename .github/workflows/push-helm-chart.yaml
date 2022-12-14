@@ -23,7 +23,7 @@ jobs:
         run: echo CHART_VERSION=0.0.1 >> $GITHUB_ENV
       - name: Push chart to charts
         run: |
-          echo ${{ env.CHART_VERSION }}
+          helm plugin install https://github.com/chartmuseum/helm-push
           helm repo add release ${{ secrets.REGISTRY }}
           helm dep up ./charts
           helm package ./charts/ -d dist --version ${{ env.CHART_VERSION }}
