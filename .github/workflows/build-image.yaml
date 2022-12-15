@@ -49,6 +49,6 @@ jobs:
             APP_VERSION=${{ env.APP_VERSION }}
           # 生成两个 docker tag: ${APP_VERSION} 和 latest
           tags: |
-            ${{ secrets.IMAGE_REGISTRY }}/${{ env.REPO }}:latest
-            ${{ secrets.IMAGE_REGISTRY }}/${{ env.REPO }}:${{ env.APP_VERSION }}
+            release.daocloud.io/${{ env.REPO }}:latest
+            release.daocloud.io/${{ env.REPO }}:${{ env.APP_VERSION }}
           file: multi_arch_Dockerfile
