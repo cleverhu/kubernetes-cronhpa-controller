@@ -24,7 +24,7 @@ jobs:
       - name: Push chart to charts
         run: |
           helm plugin install https://github.com/chartmuseum/helm-push
-          helm repo add release ${{ secrets.REGISTRY }}
+          helm repo add ${{ env.APP_NAME }} ${{ secrets.REGISTRY }}
           helm dep up ./charts
           helm package ./charts/ -d dist --version ${{ env.CHART_VERSION }}
           helm cm-push ./dist/${{ env.APP_NAME }}-${{ env.CHART_VERSION }}.tgz ${{ env.APP_NAME }} -v ${{ env.CHART_VERSION }} -u ${{ secrets.REGISTRY_USER_NAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
