@@ -8,7 +8,7 @@ on:
       - v*
 
 env:
-  REPO: ghcr.io/daocloud/kubernetes-cronhpa-controller
+  REPO: cronhpa/kubernetes-cronhpa-controller
 jobs:
   main:
     # 在 Ubuntu 上运行
@@ -27,9 +27,9 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_TOKEN }}
+          registry: ${{ secrets.IMAGE_REGISTRY }}
+          username: ${{ secrets.REGISTRY_USER_NAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
       # 通过 git 命令获取当前 tag 信息, 存入环境变量 APP_VERSION
       - name: Generate App Version
         run: echo APP_VERSION=`git describe --tags --always` >> $GITHUB_ENV
@@ -49,6 +49,6 @@ jobs:
             APP_VERSION=${{ env.APP_VERSION }}
           # 生成两个 docker tag: ${APP_VERSION} 和 latest
           tags: |
-            ${{ env.REPO }}:latest
-            ${{ env.REPO }}:${{ env.APP_VERSION }}
+            ${{ secrets.IMAGE_REGISTRY }}/${{ env.REPO }}:latest
+            ${{ secrets.IMAGE_REGISTRY }}/${{ env.REPO }}:${{ env.APP_VERSION }}
           file: multi_arch_Dockerfile
