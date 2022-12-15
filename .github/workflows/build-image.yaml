@@ -52,3 +52,4 @@ jobs:
             ${{ env.REPO }}:latest
             ${{ env.REPO }}:${{ env.APP_VERSION }}
           file: multi_arch_Dockerfile
+          github-token: ${{ secrets.GITHUB_TOKEN }}
