@@ -12,7 +12,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 Return the cronhpa image name
 */}}
 {{- define "controller.image" -}}
-{{- include "common.images.image" (dict "imageRoot" .Values.controller.image "global" .Values.global) -}}
+{{- include "common.images.image" (dict "imageRoot" .Values.controller.image "global" .Values.global "tag" .Values.global.controller) -}}
 {{- end -}}
 
 {{/*

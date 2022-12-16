@@ -47,3 +47,4 @@ jobs:
             release.daocloud.io/${{ env.REPO }}:latest
             release.daocloud.io/${{ env.REPO }}:${{ env.APP_VERSION }}
           file: multi_arch_Dockerfile
+          github-token: ${{ secrets.GITHUB_TOKEN }}
