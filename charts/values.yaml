@@ -6,6 +6,10 @@ global:
   ## @param global.imageRegistry Global Docker image registry
   ##
   imageRegistry: ""
+  controller: 
+    ## @param global.imageTag Global controller image tag
+    ##
+    imageTag: ""
   ## Role Based Access
   ## Ref: https://kubernetes.io/docs/admin/authorization/rbac/
   ## @param global.rbac.create Create ClusterRole and ClusterRoleBinding
@@ -20,9 +24,9 @@ controller:
   ## @param controller.image.pullPolicy Controller image pull policy
   ##
   image: 
-    registry: ghcr.io
+    registry: ghcr.m.daocloud.io
     repository: daocloud/kubernetes-cronhpa-controller
-    tag: "v1.3.0"
+    tag: ""
     pullPolicy: IfNotPresent
   
   ## @param controller.timezone Timezone in controller pod
@@ -49,7 +53,7 @@ cleanup:
   ## @param cleanup.image.pullPolicy Cleanup job image pull policy
   ##
   image:
-    registry: ghcr.io
+    registry: ghcr.m.daocloud.io
     repository: cloudtty/cloudshell
     tag: "v0.5.0"
     pullPolicy: IfNotPresent
